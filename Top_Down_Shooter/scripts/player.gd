@@ -1,14 +1,20 @@
-extends CharacterBody2D
+extends Area2D
 
 var SPEED = 50
 var ROTATESPEED = 40
 var BULLET = preload("res://scenes/bullet.tscn")
+var isAlive = true
+var playerHealth = 3
+var score = 0
 
 func _ready():
 	get_node("AnimatedSprite2D").play("idle")
 
 func _physics_process(delta):
-	alive(delta)
+	if isAlive == true:
+		alive(delta)
+	if isAlive == false:
+		print('game over')
 	
 func alive(delta):
 	var direction = Vector2(0,0)
@@ -30,5 +36,13 @@ func alive(delta):
 		get_node("AnimatedSprite2D").play("idle")
 	elif vel.x != 0 or vel.y != 0:
 		get_node("AnimatedSprite2D").play("run")
+	
+	position += vel * delta
 
-	move_and_collide(vel * delta)
+func _on_area_entered(area):
+	if area.name == "BulletDetecion":
+		playerHealth -= 1
+		print("player health :", playerHealth)
+		if playerHealth <= 0:
+			isAlive = false
+			queue_free()
