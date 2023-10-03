@@ -98,10 +98,14 @@ y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(208, 177)
+zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("4_wm7q8")
+
+[node name="SpawnPool" type="Node2D" parent="player/Camera2D"]
+position = Vector2(-208, -177)
 
 [node name="Player" parent="player" instance=ExtResource("1_kfihu")]
 position = Vector2(208, 176)

@@ -30,10 +30,15 @@ func moving(delta):
 	move_and_collide(direction * SPEED * delta)
 		
 func damage(value):
-	var itemSpawn = item.instantiate()
 	enemyHealth -= value
 	if(enemyHealth <= 0):
-		for i in range(1):
-			itemSpawn.position = $".".position
-			get_parent().call_deferred("add_child", itemSpawn)
 		queue_free()
+
+func spawn_item(_position):
+	var itemSpawn = item.instantiate()
+	itemSpawn.position = _position
+	get_parent().call_deferred("add_child", itemSpawn)
+
+
+func _on_tree_exiting():
+	spawn_item(position)

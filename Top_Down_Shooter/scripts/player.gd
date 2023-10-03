@@ -1,7 +1,6 @@
 extends Area2D
 
-var SPEED = 50
-var ROTATESPEED = 40
+var SPEED = 65
 var BULLET = preload("res://scenes/bullet.tscn")
 var isAlive = true
 var playerHealth = 3
