@@ -7,9 +7,8 @@ var enemyHealth = 5
 var item = preload("res://scenes/item_spawn.tscn")
 
 func _ready():
-	PLAYER = get_node("../player/Player")
+	PLAYER = get_node("../../player/Player")
 	
-
 func _physics_process(delta):
 	var playerCondition = PLAYER.get("isAlive") if PLAYER != null else false
 	if playerCondition == true:
@@ -31,14 +30,13 @@ func moving(delta):
 		
 func damage(value):
 	enemyHealth -= value
-	if(enemyHealth <= 0):
+	if enemyHealth <= 0:
 		queue_free()
 
-func spawn_item(_position):
+func spawn():
 	var itemSpawn = item.instantiate()
-	itemSpawn.position = _position
+	itemSpawn.global_position = global_position
 	get_parent().call_deferred("add_child", itemSpawn)
 
-
 func _on_tree_exiting():
-	spawn_item(position)
+	spawn()
