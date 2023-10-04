@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://drjrh1ypmdmo6"]
+
+[ext_resource type="Texture2D" uid="uid://1xqnm5q2gyaw" path="res://icon.svg" id="1_byvoc"]
+[ext_resource type="Script" path="res://scripts/item_spawn.gd" id="1_rxr0v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ald74"]
+radius = 9.0
+
+[node name="ItemSpawn" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_rxr0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ald74")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_byvoc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
