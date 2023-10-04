@@ -36,7 +36,7 @@ func moving(delta):
 		
 func damage(value):
 	enemyHealth -= value
-	if(enemyHealth <= 0):
+	if enemyHealth <= 0:
 		queue_free()
 
 func spawn_item(_position):
@@ -45,7 +45,6 @@ func spawn_item(_position):
 		var itemSpawn = items.pop_front().instantiate()
 		itemSpawn.position = _position
 		get_parent().call_deferred("add_child", itemSpawn)
-
 
 func _on_tree_exiting():
 	var spawn_chance = rng.randf()

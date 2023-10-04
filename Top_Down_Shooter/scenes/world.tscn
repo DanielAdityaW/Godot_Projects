@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ylw3tgj88fr4"]
+[gd_scene load_steps=12 format=3 uid="uid://ylw3tgj88fr4"]
 
 [ext_resource type="Texture2D" uid="uid://dnme5aovaft6d" path="res://spritesheet/env/floor_top_down.png" id="1_13ba3"]
 [ext_resource type="PackedScene" uid="uid://bielm1fvyptwa" path="res://scenes/player.tscn" id="1_kfihu"]
 [ext_resource type="Texture2D" uid="uid://clq6cf6v7prmw" path="res://spritesheet/env/floor_top_down_grass.png" id="1_s6hs3"]
 [ext_resource type="Texture2D" uid="uid://bfdulxhq6t2gn" path="res://spritesheet/env/floor_top_down_grass_tiles.png" id="3_7lmoi"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="4_wm7q8"]
-[ext_resource type="PackedScene" uid="uid://dm2fs4jumu4wo" path="res://scenes/enemy_1.tscn" id="5_bhmlj"]
+[ext_resource type="Script" path="res://scenes/mobs.gd" id="6_0p6xr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xekn"]
 texture = ExtResource("1_s6hs3")
@@ -83,8 +83,15 @@ sources/1 = SubResource("TileSetAtlasSource_jnvfm")
 sources/0 = SubResource("TileSetAtlasSource_7xekn")
 sources/2 = SubResource("TileSetAtlasSource_qmb8x")
 
+[sub_resource type="Curve2D" id="Curve2D_flvb5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -120, -10, 0, 0, 0, 0, 533, -5, 0, 0, 0, 0, 534, 364, 0, 0, 0, 0, -120, 376, 0, 0, 0, 0, -120, -10)
+}
+point_count = 5
+
 [node name="World" type="Node2D"]
 process_mode = 1
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -100,24 +107,34 @@ y_sort_enabled = true
 position = Vector2(208, 177)
 zoom = Vector2(2, 2)
 process_callback = 0
+limit_left = 0
+limit_top = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("4_wm7q8")
 
-[node name="SpawnPool" type="Node2D" parent="player/Camera2D"]
-position = Vector2(-208, -177)
-
 [node name="Player" parent="player" instance=ExtResource("1_kfihu")]
 position = Vector2(208, 176)
 
-[node name="enemy_1" parent="." instance=ExtResource("5_bhmlj")]
-position = Vector2(64, 96)
+[node name="Path2D" type="Path2D" parent="player/Player"]
+position = Vector2(-208, -176)
+curve = SubResource("Curve2D_flvb5")
 
-[node name="enemy_2" parent="." instance=ExtResource("5_bhmlj")]
-position = Vector2(187, 61)
+[node name="PathFollow2D" type="PathFollow2D" parent="player/Player/Path2D"]
+position = Vector2(-120, -10)
+rotation = 0.00765682
 
-[node name="enemy_3" parent="." instance=ExtResource("5_bhmlj")]
-position = Vector2(320, 58)
+[node name="Marker2D" type="Marker2D" parent="player/Player/Path2D/PathFollow2D"]
+position = Vector2(655.459, 187.987)
+gizmo_extents = 735.0
 
-[node name="enemy_4" parent="." instance=ExtResource("5_bhmlj")]
-position = Vector2(402, 108)
+[node name="Timer" type="Timer" parent="player"]
+process_callback = 0
+wait_time = 0.5
+autostart = true
+
+[node name="mobs" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("6_0p6xr")
+
+[connection signal="timeout" from="player/Timer" to="mobs" method="_on_timer_timeout"]
