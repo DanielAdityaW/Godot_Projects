@@ -52,7 +52,3 @@ func _on_area_entered(area):
 func add_xp(value):
 	xp += value
 	print("Player XP : ", xp)
-
-func _on_item_area_area_entered(area):
-	if(area.name == "ItemSpawn"):
-		area.direction_to_player(self)

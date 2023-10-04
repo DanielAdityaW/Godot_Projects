@@ -119,7 +119,7 @@ animations = [{
 size = Vector2(20, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56mey"]
-radius = 31.257
+radius = 52.0
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_8bxkd")
@@ -161,4 +161,3 @@ shape = SubResource("CircleShape2D_56mey")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Gunpoint/Timer" to="Gunpoint" method="_on_timer_timeout"]
-[connection signal="area_entered" from="ItemArea" to="." method="_on_item_area_area_entered"]

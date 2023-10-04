@@ -13,7 +13,7 @@ var rng = RandomNumberGenerator.new()
 
 
 func _ready():
-	PLAYER = get_node("../player/Player")
+	PLAYER = get_node("../../player/Player")
 
 func _physics_process(delta):
 	var playerCondition = PLAYER.get("isAlive") if PLAYER != null else false
