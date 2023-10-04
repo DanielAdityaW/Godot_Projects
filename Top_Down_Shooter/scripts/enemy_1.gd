@@ -4,11 +4,16 @@ var PLAYER
 var SPEED = 20 
 var direction = Vector2.ZERO
 var enemyHealth = 5
-var item = preload("res://scenes/item_spawn.tscn")
+var items = [
+	preload("res://scenes/item_spawn.tscn")
+]
+var item_count = 1
+var drop_chance = 1
+var rng = RandomNumberGenerator.new()
+
 
 func _ready():
 	PLAYER = get_node("../player/Player")
-	
 
 func _physics_process(delta):
 	var playerCondition = PLAYER.get("isAlive") if PLAYER != null else false
@@ -35,10 +40,14 @@ func damage(value):
 		queue_free()
 
 func spawn_item(_position):
-	var itemSpawn = item.instantiate()
-	itemSpawn.position = _position
-	get_parent().call_deferred("add_child", itemSpawn)
+	items.shuffle()
+	for x in range(item_count):
+		var itemSpawn = items.pop_front().instantiate()
+		itemSpawn.position = _position
+		get_parent().call_deferred("add_child", itemSpawn)
 
 
 func _on_tree_exiting():
-	spawn_item(position)
+	var spawn_chance = rng.randf()
+	if(spawn_chance <= drop_chance):
+		spawn_item(position)

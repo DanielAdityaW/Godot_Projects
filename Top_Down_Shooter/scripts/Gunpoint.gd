@@ -31,7 +31,7 @@ func _physics_process(_delta):
 	rotation_degrees = rad_to_deg(new_rotation)
 	
 	flip_weapons()
-	
+
 func reload():
 	$Timer.start()
 	isReload = true

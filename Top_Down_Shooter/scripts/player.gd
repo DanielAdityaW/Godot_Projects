@@ -6,6 +6,8 @@ var isAlive = true
 var playerHealth = 3
 var score = 0
 
+var xp = 0
+
 func _ready():
 	get_node("AnimatedSprite2D").play("idle")
 
@@ -14,7 +16,7 @@ func _physics_process(delta):
 		alive(delta)
 	if isAlive == false:
 		print('game over')
-	
+
 func alive(delta):
 	var direction = Vector2(0,0)
 	if Input.is_action_pressed("left_side"):
@@ -27,7 +29,7 @@ func alive(delta):
 		direction.y = -1
 	if Input.is_action_pressed("down_side"):
 		direction.y = 1
-		
+
 	direction = direction.normalized()
 	var vel = direction * SPEED
 
@@ -35,7 +37,7 @@ func alive(delta):
 		get_node("AnimatedSprite2D").play("idle")
 	elif vel.x != 0 or vel.y != 0:
 		get_node("AnimatedSprite2D").play("run")
-	
+
 	position += vel * delta
 
 func _on_area_entered(area):
@@ -45,3 +47,12 @@ func _on_area_entered(area):
 		if playerHealth <= 0:
 			isAlive = false
 			queue_free()
+
+
+func add_xp(value):
+	xp += value
+	print("Player XP : ", xp)
+
+func _on_item_area_area_entered(area):
+	if(area.name == "ItemSpawn"):
+		area.direction_to_player(self)

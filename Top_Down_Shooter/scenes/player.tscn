@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bielm1fvyptwa"]
+[gd_scene load_steps=21 format=3 uid="uid://bielm1fvyptwa"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8bxkd"]
 [ext_resource type="Texture2D" uid="uid://do6s1fe2x0emm" path="res://spritesheet/characters/idle2.png" id="2_44n5g"]
@@ -118,6 +118,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnw1g"]
 size = Vector2(20, 21)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_56mey"]
+radius = 31.257
+
 [node name="Player" type="Area2D"]
 script = ExtResource("1_8bxkd")
 
@@ -151,5 +154,11 @@ texture = ExtResource("6_y1dk5")
 
 [node name="Timer" type="Timer" parent="Gunpoint"]
 
+[node name="ItemArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemArea"]
+shape = SubResource("CircleShape2D_56mey")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Gunpoint/Timer" to="Gunpoint" method="_on_timer_timeout"]
+[connection signal="area_entered" from="ItemArea" to="." method="_on_item_area_area_entered"]
