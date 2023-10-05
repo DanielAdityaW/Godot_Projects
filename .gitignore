@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
-.godot/
+Top_Down_Shooter/.godot/
 
 # Godot-specific ignores
 .import/

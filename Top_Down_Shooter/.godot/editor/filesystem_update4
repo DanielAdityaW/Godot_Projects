@@ -1,7 +1,2 @@
-res://scenes/player.tscn
-res://scenes/world.tscn
-res://scripts/item_spawn.gd
 res://scenes/enemy_1.tscn
-res://scripts/enemy_1.gd
 res://scenes/item_spawn.tscn
-res://scripts/player.gd
