@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Top_Down_Shooter"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://src/world/scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://scripts/Global/Game.gd"
-DifficultyConfig="*res://scripts/global/DifficultyConfig.gd"
+Game="*res://src/global/Game.gd"
+DifficultyConfig="*res://src/global/DifficultyConfig.gd"
 
 [input]
 
