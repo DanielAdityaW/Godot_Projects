@@ -11,6 +11,7 @@ var item_count = 1
 var drop_chance = 1
 var rng = RandomNumberGenerator.new()
 
+@onready var hit_anim = $hit_anim
 
 func _ready():
 	PLAYER = get_node("../../player/Player")
@@ -38,6 +39,7 @@ func damage(value):
 	enemyHealth -= value
 	if enemyHealth <= 0:
 		queue_free()
+	hit_anim.play("hit_anim_flash")
 
 func spawn_item(_position):
 	items.shuffle()
@@ -45,6 +47,7 @@ func spawn_item(_position):
 		var itemSpawn = items.pop_front().instantiate()
 		itemSpawn.position = _position
 		get_parent().call_deferred("add_child", itemSpawn)
+		
 
 func _on_tree_exiting():
 	var spawn_chance = rng.randf()

@@ -48,7 +48,6 @@ func _on_area_entered(area):
 			isAlive = false
 			queue_free()
 
-
 func add_xp(value):
 	xp += value
 	print("Player XP : ", xp)
