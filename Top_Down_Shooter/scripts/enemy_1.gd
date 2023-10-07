@@ -11,9 +11,10 @@ var item_count = 1
 var drop_chance = 1
 var rng = RandomNumberGenerator.new()
 
-
 func _ready():
 	PLAYER = get_node("../../player/Player")
+	enemyHealth += DifficultyConfig.multiplier * DifficultyConfig.enemy_health_multiplier
+	print("Enemy health : ", enemyHealth)
 
 func _physics_process(delta):
 	var playerCondition = PLAYER.get("isAlive") if PLAYER != null else false
