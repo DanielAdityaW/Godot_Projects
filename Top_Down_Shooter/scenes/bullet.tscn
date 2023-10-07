@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dee54o8k0jfvs"]
+[gd_scene load_steps=8 format=3 uid="uid://dee54o8k0jfvs"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_fldk4"]
 [ext_resource type="Texture2D" uid="uid://dg5ga5ydwgrje" path="res://spritesheet/dummy_assets/dummyBullet.png" id="2_fpqqc"]
+[ext_resource type="Script" path="res://scenes/BulletTrail.gd" id="3_w5wq1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k1t0n"]
 animations = [{
@@ -15,20 +16,37 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4mjx2"]
-radius = 3.0
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_3rgvk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_q24wp"]
+offsets = PackedFloat32Array(0.00636943, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_fldk4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(2, 2, 2, 1)
 texture_filter = 1
-position = Vector2(1.19209e-07, -1.19209e-07)
-scale = Vector2(0.4375, 0.4375)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_k1t0n")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_4mjx2")
+
+[node name="BulletTrail" type="Line2D" parent="."]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+show_behind_parent = true
+width = 2.0
+width_curve = SubResource("Curve_3rgvk")
+default_color = Color(0.988235, 1, 0.882353, 1)
+gradient = SubResource("Gradient_q24wp")
+script = ExtResource("3_w5wq1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

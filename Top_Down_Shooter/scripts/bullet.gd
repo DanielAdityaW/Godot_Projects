@@ -1,7 +1,7 @@
 extends Area2D
 
-var bullet_speed = 500
-var direction = Vector2(1,0)
+var bullet_speed = 350
+var direction = Vector2.RIGHT
 var max_distance = 2000
 
 func _physics_process(delta):
