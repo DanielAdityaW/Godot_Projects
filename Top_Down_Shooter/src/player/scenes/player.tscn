@@ -1,11 +1,42 @@
-[gd_scene load_steps=21 format=3 uid="uid://bielm1fvyptwa"]
+[gd_scene load_steps=34 format=3 uid="uid://bielm1fvyptwa"]
 
 [ext_resource type="Script" path="res://src/player/scripts/player.gd" id="1_67d6a"]
 [ext_resource type="Texture2D" uid="uid://do6s1fe2x0emm" path="res://assets/spritesheet/characters/idle2.png" id="2_4p8k4"]
+[ext_resource type="Texture2D" uid="uid://c27nxs30l1hiu" path="res://assets/spritesheet/characters/death_anim-Sheet-Sheet.png" id="2_x4xhb"]
 [ext_resource type="Texture2D" uid="uid://oy81ytaiyn21" path="res://assets/spritesheet/characters/run-Sheet2.png" id="3_tvgyb"]
 [ext_resource type="Script" path="res://src/player/scripts/Gunpoint.gd" id="4_u7khb"]
 [ext_resource type="Texture2D" uid="uid://by0bqn85rpw03" path="res://assets/spritesheet/weapons/shotgun.png" id="5_37bo0"]
+[ext_resource type="Script" path="res://src/player/scripts/hand_pistol.gd" id="5_yv2yx"]
 [ext_resource type="Texture2D" uid="uid://clo1xwk8mx4at" path="res://assets/spritesheet/weapons/pistol.png" id="6_mwq31"]
+[ext_resource type="Script" path="res://src/player/scripts/hand_shotgun.gd" id="7_qip6x"]
+[ext_resource type="Texture2D" uid="uid://c0y56gljeuo4w" path="res://assets/spritesheet/weapons/smg.png" id="10_1roki"]
+[ext_resource type="Script" path="res://src/player/scripts/hand_smg.gd" id="10_shwa4"]
+[ext_resource type="Texture2D" uid="uid://b5jyapnwmuo6c" path="res://assets/spritesheet/weapons/assalute_rifle.png" id="12_43a3y"]
+[ext_resource type="Script" path="res://src/player/scripts/hand_assalut_rifle.gd" id="12_qq5q5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb2bn"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_royl0"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8eh7"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k61c3"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq82l"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cifhn"]
+atlas = ExtResource("2_x4xhb")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgaen"]
 atlas = ExtResource("2_4p8k4")
@@ -53,6 +84,29 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xikh4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb2bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_royl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8eh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k61c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq82l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cifhn")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qgaen")
@@ -127,7 +181,9 @@ script = ExtResource("1_67d6a")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xikh4")
-animation = &"run"
+animation = &"death"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cnw1g")
@@ -136,21 +192,45 @@ shape = SubResource("RectangleShape2D_cnw1g")
 scale = Vector2(2, 2)
 script = ExtResource("4_u7khb")
 
+[node name="hand_pistol" type="Node2D" parent="Gunpoint"]
+position = Vector2(17, 0)
+script = ExtResource("5_yv2yx")
+
+[node name="Pistol" type="Sprite2D" parent="Gunpoint/hand_pistol"]
+modulate = Color(0.639216, 0.639216, 0.639216, 1)
+position = Vector2(-4.5, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_mwq31")
+
 [node name="hand_shotgun" type="Node2D" parent="Gunpoint"]
 position = Vector2(23, 0)
+script = ExtResource("7_qip6x")
 
 [node name="Shotgun" type="Sprite2D" parent="Gunpoint/hand_shotgun"]
+modulate = Color(0.639216, 0.639216, 0.639216, 1)
 position = Vector2(-8, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_37bo0")
 
-[node name="hand_pistol" type="Node2D" parent="Gunpoint"]
-position = Vector2(17, 0)
+[node name="hand_smg" type="Node2D" parent="Gunpoint"]
+position = Vector2(18, -0.5)
+script = ExtResource("10_shwa4")
 
-[node name="Pistol" type="Sprite2D" parent="Gunpoint/hand_pistol"]
-position = Vector2(-4.5, 1)
+[node name="Smg" type="Sprite2D" parent="Gunpoint/hand_smg"]
+modulate = Color(0.639216, 0.639216, 0.639216, 1)
+position = Vector2(-5.5, 1)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_mwq31")
+texture = ExtResource("10_1roki")
+
+[node name="hand_assalut_rifle" type="Node2D" parent="Gunpoint"]
+position = Vector2(26, 0)
+script = ExtResource("12_qq5q5")
+
+[node name="AssaluteRifle" type="Sprite2D" parent="Gunpoint/hand_assalut_rifle"]
+modulate = Color(0.639216, 0.639216, 0.639216, 1)
+position = Vector2(-10, 1)
+scale = Vector2(0.625, 0.453125)
+texture = ExtResource("12_43a3y")
 
 [node name="FireSpeed" type="Timer" parent="Gunpoint"]
 process_callback = 0
@@ -167,5 +247,11 @@ visible = false
 shape = SubResource("CircleShape2D_56mey")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="timeout" from="Gunpoint/FireSpeed" to="Gunpoint" method="_on_timer_timeout"]
-[connection signal="timeout" from="Gunpoint/ReloadTimer" to="Gunpoint" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Gunpoint/FireSpeed" to="Gunpoint/hand_pistol" method="_on_fire_speed_timeout"]
+[connection signal="timeout" from="Gunpoint/FireSpeed" to="Gunpoint/hand_shotgun" method="_on_fire_speed_timeout"]
+[connection signal="timeout" from="Gunpoint/FireSpeed" to="Gunpoint/hand_smg" method="_on_fire_speed_timeout"]
+[connection signal="timeout" from="Gunpoint/FireSpeed" to="Gunpoint/hand_assalut_rifle" method="_on_fire_speed_timeout"]
+[connection signal="timeout" from="Gunpoint/ReloadTimer" to="Gunpoint/hand_pistol" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Gunpoint/ReloadTimer" to="Gunpoint/hand_shotgun" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Gunpoint/ReloadTimer" to="Gunpoint/hand_smg" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Gunpoint/ReloadTimer" to="Gunpoint/hand_assalut_rifle" method="_on_reload_timer_timeout"]

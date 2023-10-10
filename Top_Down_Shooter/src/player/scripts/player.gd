@@ -5,7 +5,6 @@ var BULLET = preload("res://src/projectiles/bullet/scenes/bullet.tscn")
 var isAlive = true
 var playerHealth = 3
 var score = 0
-
 var xp = 0
 
 func _ready():
@@ -45,9 +44,15 @@ func _on_area_entered(area):
 		playerHealth -= 1
 		print("player health :", playerHealth)
 		if playerHealth <= 0:
+			$Gunpoint.queue_free()
 			isAlive = false
-			queue_free()
+			get_node("AnimatedSprite2D").play("death")
+			await get_node("AnimatedSprite2D").animation_finished
+			self.queue_free()
 
 func add_xp(value):
 	xp += value
 	print("Player XP : ", xp)
+
+func _on_reload_timer_timeout():
+	pass # Replace with function body.
