@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bielm1fvyptwa"]
+[gd_scene load_steps=35 format=3 uid="uid://bielm1fvyptwa"]
 
 [ext_resource type="Script" path="res://src/player/scripts/player.gd" id="1_67d6a"]
 [ext_resource type="Texture2D" uid="uid://do6s1fe2x0emm" path="res://assets/spritesheet/characters/idle2.png" id="2_4p8k4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://by0bqn85rpw03" path="res://assets/spritesheet/weapons/shotgun.png" id="5_37bo0"]
 [ext_resource type="Script" path="res://src/player/scripts/hand_pistol.gd" id="5_yv2yx"]
 [ext_resource type="Texture2D" uid="uid://clo1xwk8mx4at" path="res://assets/spritesheet/weapons/pistol.png" id="6_mwq31"]
+[ext_resource type="PackedScene" uid="uid://dee54o8k0jfvs" path="res://src/projectiles/bullet/scenes/bullet.tscn" id="7_g6osp"]
 [ext_resource type="Script" path="res://src/player/scripts/hand_shotgun.gd" id="7_qip6x"]
 [ext_resource type="Texture2D" uid="uid://c0y56gljeuo4w" path="res://assets/spritesheet/weapons/smg.png" id="10_1roki"]
 [ext_resource type="Script" path="res://src/player/scripts/hand_smg.gd" id="10_shwa4"]
@@ -192,9 +193,13 @@ shape = SubResource("RectangleShape2D_cnw1g")
 scale = Vector2(2, 2)
 script = ExtResource("4_u7khb")
 
-[node name="hand_pistol" type="Node2D" parent="Gunpoint"]
+[node name="hand_pistol" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
 position = Vector2(17, 0)
 script = ExtResource("5_yv2yx")
+gunpoint = NodePath("..")
+firespeed = NodePath("../FireSpeed")
+reloadtime = NodePath("../ReloadTimer")
+BULLET = ExtResource("7_g6osp")
 
 [node name="Pistol" type="Sprite2D" parent="Gunpoint/hand_pistol"]
 modulate = Color(0.639216, 0.639216, 0.639216, 1)
@@ -202,9 +207,13 @@ position = Vector2(-4.5, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_mwq31")
 
-[node name="hand_shotgun" type="Node2D" parent="Gunpoint"]
+[node name="hand_shotgun" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
 position = Vector2(23, 0)
 script = ExtResource("7_qip6x")
+gunpoint = NodePath("..")
+firespeed = NodePath("../FireSpeed")
+reloadtime = NodePath("../ReloadTimer")
+BULLET = ExtResource("7_g6osp")
 
 [node name="Shotgun" type="Sprite2D" parent="Gunpoint/hand_shotgun"]
 modulate = Color(0.639216, 0.639216, 0.639216, 1)

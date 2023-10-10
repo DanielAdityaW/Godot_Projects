@@ -16,15 +16,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4mjx2"]
-radius = 1.0
+radius = 2.0
 
 [sub_resource type="Curve" id="Curve_3rgvk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_q24wp"]
-offsets = PackedFloat32Array(0.205298, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0.894118, 0, 1)
+offsets = PackedFloat32Array(0.00636943, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_fldk4")
@@ -32,18 +32,18 @@ script = ExtResource("1_fldk4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(2, 2, 2, 1)
 texture_filter = 1
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_k1t0n")
 animation = &"idle"
 
-[node name="bulletArea" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_4mjx2")
 
 [node name="BulletTrail" type="Line2D" parent="."]
-self_modulate = Color(2, 2, 2, 1)
+self_modulate = Color(1.2, 1.2, 1.2, 1)
 show_behind_parent = true
-width = 1.5
+width = 2.0
 width_curve = SubResource("Curve_3rgvk")
 default_color = Color(0.988235, 1, 0.882353, 1)
 gradient = SubResource("Gradient_q24wp")
