@@ -37,11 +37,11 @@ func _physics_process(_delta):
 		equipped_weapon.checkAmmo()
 	if Input.is_action_just_pressed("wp3"):
 		equipped_weapon = weapons[2]
-		equipped_weapon.isSMG()
+		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 	if Input.is_action_just_pressed("wp4"):
 		equipped_weapon = weapons[3] 
-		equipped_weapon.isAR()
+		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 
 	if Input.is_action_pressed("fire"):

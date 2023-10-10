@@ -221,9 +221,13 @@ position = Vector2(-8, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_37bo0")
 
-[node name="hand_smg" type="Node2D" parent="Gunpoint"]
+[node name="hand_smg" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
 position = Vector2(18, -0.5)
 script = ExtResource("10_shwa4")
+gunpoint = NodePath("..")
+firespeed = NodePath("../FireSpeed")
+reloadtime = NodePath("../ReloadTimer")
+BULLET = ExtResource("7_g6osp")
 
 [node name="Smg" type="Sprite2D" parent="Gunpoint/hand_smg"]
 modulate = Color(0.639216, 0.639216, 0.639216, 1)
@@ -231,9 +235,13 @@ position = Vector2(-5.5, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_1roki")
 
-[node name="hand_assalut_rifle" type="Node2D" parent="Gunpoint"]
+[node name="hand_assalut_rifle" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
 position = Vector2(26, 0)
 script = ExtResource("12_qq5q5")
+gunpoint = NodePath("..")
+firespeed = NodePath("../FireSpeed")
+reloadtime = NodePath("../ReloadTimer")
+BULLET = ExtResource("7_g6osp")
 
 [node name="AssaluteRifle" type="Sprite2D" parent="Gunpoint/hand_assalut_rifle"]
 modulate = Color(0.639216, 0.639216, 0.639216, 1)

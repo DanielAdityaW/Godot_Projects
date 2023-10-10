@@ -21,13 +21,14 @@ var pattern = []
 @export var reloadtime:Timer
 @export var BULLET: PackedScene
 
-func _init(_gunName: String, _bulletSpeed: float, _bulletDamage:float, _fireSpeed: float, _reloadTime: float, _pattern):
+func _init(_gunName: String, _bulletSpeed: float, _bulletDamage:float, _fireSpeed: float, _reloadTime: float, _ammo: int, _pattern):
 	gunName = _gunName
 	bulletSpeed = _bulletSpeed
 	bulletDamage = _bulletDamage
 	pattern = _pattern
 	fireSpeed = _fireSpeed
 	reloadTime = _reloadTime
+	ammo_gun = _ammo
 
 func _ready():
 	firespeed.timeout.connect(_on_fire_speed_timeout)
@@ -45,8 +46,8 @@ func enableWeapon():
 		if(owp.name != name):
 			if(owp is Node2D):
 				owp.visible = false
-	firespeed.wait_time = 0.35
-	reloadtime.wait_time = 1.0
+	firespeed.wait_time = fireSpeed
+	reloadtime.wait_time = reloadTime
 	
 func checkAmmo():
 	if ammo_left == ammo_gun:
