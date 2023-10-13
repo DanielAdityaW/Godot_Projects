@@ -7,6 +7,8 @@ var playerHealth = 3
 var score = 0
 var xp = 0
 
+signal set_selected_weapon(weapon_number)
+
 func _ready():
 	get_node("AnimatedSprite2D").play("idle")
 

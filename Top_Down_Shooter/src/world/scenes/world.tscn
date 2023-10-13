@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ylw3tgj88fr4"]
+[gd_scene load_steps=14 format=3 uid="uid://ylw3tgj88fr4"]
 
 [ext_resource type="Texture2D" uid="uid://dnme5aovaft6d" path="res://assets/spritesheet/env/floor_top_down.png" id="1_13ba3"]
 [ext_resource type="PackedScene" uid="uid://bielm1fvyptwa" path="res://src/player/scenes/player.tscn" id="1_kfihu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bfdulxhq6t2gn" path="res://assets/spritesheet/env/floor_top_down_grass_tiles.png" id="3_7lmoi"]
 [ext_resource type="Script" path="res://src/environments/camera/scripts/Camera2D.gd" id="4_wm7q8"]
 [ext_resource type="Script" path="res://src/npcs/mob-spawner/scripts/mobs.gd" id="6_0p6xr"]
+[ext_resource type="PackedScene" uid="uid://cs70s5s2bs0l7" path="res://src/ui/scenes/GameUI.tscn" id="7_l1k1g"]
 
 [sub_resource type="Curve2D" id="Curve2D_flvb5"]
 _data = {
@@ -151,4 +152,9 @@ layer_0/tile_data = PackedInt32Array(196609, 196610, 1, 196610, 196610, 1, 26214
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1w5ib")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("7_l1k1g")]
+
+[connection signal="set_selected_weapon" from="player/Player" to="CanvasLayer/GameUI" method="_on_player_set_selected_weapon"]
 [connection signal="timeout" from="player/Timer" to="mobs" method="_on_timer_timeout"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d8p2pr643k7m"]
+
+[ext_resource type="Script" path="res://src/ui/scripts/item.gd" id="1_wh1xn"]
+[ext_resource type="Texture2D" uid="uid://cw315kpdphory" path="res://assets/unselected_frame.png" id="2_2diem"]
+[ext_resource type="Texture2D" uid="uid://clo1xwk8mx4at" path="res://assets/spritesheet/weapons/pistol.png" id="2_fchon"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nysyf"]
+font_size = 12
+
+[node name="Item" type="Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wh1xn")
+
+[node name="ItemFrame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2diem")
+
+[node name="ItemImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_fchon")
+
+[node name="ItemNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 19.0
+offset_right = 39.0
+offset_bottom = 39.0
+text = "1"
+label_settings = SubResource("LabelSettings_nysyf")
