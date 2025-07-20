@@ -52,7 +52,7 @@ func _physics_process(_delta):
 		equipped_weapon.checkAmmo()
 
 	if Input.is_action_pressed("fire"):
-		if not equipped_weapon.isROF and not equipped_weapon.isReload: #isReload = false
+		if not equipped_weapon.isRof and not equipped_weapon.isReload: #isReload = false
 			isFire()
 			
 	var new_rotation = atan2(aim.y, aim.x)
@@ -60,11 +60,11 @@ func _physics_process(_delta):
 	flip_weapons()
 
 func isFire():
-	if equipped_weapon.get("ammo_left") > 0:
+	if equipped_weapon.get("ammoLeft") > 0:
 		spawnProjectiles()
-		if equipped_weapon.get("ammo_left") <= 0:
+		if equipped_weapon.get("ammoLeft") <= 0:
 			print("reloading . . . I need more boellets")
-			equipped_weapon.reload_time()
+			equipped_weapon.reload()
 			
 func spawnProjectiles():
 	equipped_weapon.shoot(aim)
@@ -87,7 +87,6 @@ func spawnBullets(a):
 	get_parent().get_parent().add_child(bulletSpawn)
 	
 func flip_weapons():
-	if rotation_degrees <= -90 or rotation_degrees >= 90:
-		equipped_weapon.flipingA()
-	elif rotation_degrees >= -90 or rotation_degrees <= 90:
-		equipped_weapon.flipingB()
+	var is_up = rotation_degrees <= -90 or rotation_degrees >= 90
+	if equipped_weapon:
+		equipped_weapon.flip_vertical(is_up)

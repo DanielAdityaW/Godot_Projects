@@ -1,19 +1,19 @@
 [gd_scene load_steps=35 format=3 uid="uid://bielm1fvyptwa"]
 
-[ext_resource type="Script" path="res://src/player/scripts/player.gd" id="1_67d6a"]
+[ext_resource type="Script" uid="uid://c8x184njdsc44" path="res://src/player/scripts/player.gd" id="1_67d6a"]
 [ext_resource type="Texture2D" uid="uid://do6s1fe2x0emm" path="res://assets/spritesheet/characters/idle2.png" id="2_4p8k4"]
 [ext_resource type="Texture2D" uid="uid://c27nxs30l1hiu" path="res://assets/spritesheet/characters/death_anim-Sheet-Sheet.png" id="2_x4xhb"]
 [ext_resource type="Texture2D" uid="uid://oy81ytaiyn21" path="res://assets/spritesheet/characters/run-Sheet2.png" id="3_tvgyb"]
-[ext_resource type="Script" path="res://src/player/scripts/Gunpoint.gd" id="4_u7khb"]
+[ext_resource type="Script" uid="uid://dbh6vsjnkfc1d" path="res://src/player/scripts/Gunpoint.gd" id="4_u7khb"]
 [ext_resource type="Texture2D" uid="uid://by0bqn85rpw03" path="res://assets/spritesheet/weapons/shotgun.png" id="5_37bo0"]
-[ext_resource type="Script" path="res://src/player/scripts/hand_pistol.gd" id="5_yv2yx"]
+[ext_resource type="Script" uid="uid://dm0aq2axm6fgn" path="res://src/player/scripts/hand_pistol.gd" id="5_yv2yx"]
 [ext_resource type="Texture2D" uid="uid://clo1xwk8mx4at" path="res://assets/spritesheet/weapons/pistol.png" id="6_mwq31"]
 [ext_resource type="PackedScene" uid="uid://dee54o8k0jfvs" path="res://src/projectiles/bullet/scenes/bullet.tscn" id="7_g6osp"]
-[ext_resource type="Script" path="res://src/player/scripts/hand_shotgun.gd" id="7_qip6x"]
+[ext_resource type="Script" uid="uid://duxk4u1ca05r5" path="res://src/player/scripts/hand_shotgun.gd" id="7_qip6x"]
 [ext_resource type="Texture2D" uid="uid://c0y56gljeuo4w" path="res://assets/spritesheet/weapons/smg.png" id="10_1roki"]
-[ext_resource type="Script" path="res://src/player/scripts/hand_smg.gd" id="10_shwa4"]
+[ext_resource type="Script" uid="uid://30hgvpngrc6s" path="res://src/player/scripts/hand_smg.gd" id="10_shwa4"]
 [ext_resource type="Texture2D" uid="uid://b5jyapnwmuo6c" path="res://assets/spritesheet/weapons/assalute_rifle.png" id="12_43a3y"]
-[ext_resource type="Script" path="res://src/player/scripts/hand_assalut_rifle.gd" id="12_qq5q5"]
+[ext_resource type="Script" uid="uid://d4nlrbaprov00" path="res://src/player/scripts/hand_assalut_rifle.gd" id="12_qq5q5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb2bn"]
 atlas = ExtResource("2_x4xhb")
@@ -193,12 +193,12 @@ shape = SubResource("RectangleShape2D_cnw1g")
 scale = Vector2(2, 2)
 script = ExtResource("4_u7khb")
 
-[node name="hand_pistol" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
+[node name="hand_pistol" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunPoint", "fireSpeedTimer", "reloadTimeTimer")]
 position = Vector2(17, 0)
 script = ExtResource("5_yv2yx")
-gunpoint = NodePath("..")
-firespeed = NodePath("../FireSpeed")
-reloadtime = NodePath("../ReloadTimer")
+gunPoint = NodePath("..")
+fireSpeedTimer = NodePath("../FireSpeed")
+reloadTimeTimer = NodePath("../ReloadTimer")
 BULLET = ExtResource("7_g6osp")
 
 [node name="Pistol" type="Sprite2D" parent="Gunpoint/hand_pistol"]
@@ -207,12 +207,12 @@ position = Vector2(-4.5, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_mwq31")
 
-[node name="hand_shotgun" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
+[node name="hand_shotgun" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunPoint", "fireSpeedTimer", "reloadTimeTimer")]
 position = Vector2(23, 0)
 script = ExtResource("7_qip6x")
-gunpoint = NodePath("..")
-firespeed = NodePath("../FireSpeed")
-reloadtime = NodePath("../ReloadTimer")
+gunPoint = NodePath("..")
+fireSpeedTimer = NodePath("../FireSpeed")
+reloadTimeTimer = NodePath("../ReloadTimer")
 BULLET = ExtResource("7_g6osp")
 
 [node name="Shotgun" type="Sprite2D" parent="Gunpoint/hand_shotgun"]
@@ -221,12 +221,12 @@ position = Vector2(-8, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_37bo0")
 
-[node name="hand_smg" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
+[node name="hand_smg" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunPoint", "fireSpeedTimer", "reloadTimeTimer")]
 position = Vector2(18, -0.5)
 script = ExtResource("10_shwa4")
-gunpoint = NodePath("..")
-firespeed = NodePath("../FireSpeed")
-reloadtime = NodePath("../ReloadTimer")
+gunPoint = NodePath("..")
+fireSpeedTimer = NodePath("../FireSpeed")
+reloadTimeTimer = NodePath("../ReloadTimer")
 BULLET = ExtResource("7_g6osp")
 
 [node name="Smg" type="Sprite2D" parent="Gunpoint/hand_smg"]
@@ -235,12 +235,12 @@ position = Vector2(-5.5, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_1roki")
 
-[node name="hand_assalut_rifle" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunpoint", "firespeed", "reloadtime")]
+[node name="hand_assalut_rifle" type="Node2D" parent="Gunpoint" node_paths=PackedStringArray("gunPoint", "fireSpeedTimer", "reloadTimeTimer")]
 position = Vector2(26, 0)
 script = ExtResource("12_qq5q5")
-gunpoint = NodePath("..")
-firespeed = NodePath("../FireSpeed")
-reloadtime = NodePath("../ReloadTimer")
+gunPoint = NodePath("..")
+fireSpeedTimer = NodePath("../FireSpeed")
+reloadTimeTimer = NodePath("../ReloadTimer")
 BULLET = ExtResource("7_g6osp")
 
 [node name="AssaluteRifle" type="Sprite2D" parent="Gunpoint/hand_assalut_rifle"]
