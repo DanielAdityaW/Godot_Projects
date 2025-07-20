@@ -9,6 +9,9 @@ var equipped_weapon
 var new_weapon
 var bullet_speed 
 var value 
+
+signal set_selected_weapon(weapon_number)
+
 @onready var BULLET = preload("res://src/projectiles/bullet/scenes/bullet.tscn")
 
 @onready var weapons = [
@@ -29,22 +32,22 @@ func _physics_process(_delta):
 		
 	if Input.is_action_just_pressed("wp1"):
 		equipped_weapon = weapons[0]
-		get_parent().emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
+		emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
 		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 	if Input.is_action_just_pressed("wp2"):
 		equipped_weapon = weapons[1]
-		get_parent().emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
+		emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
 		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 	if Input.is_action_just_pressed("wp3"):
 		equipped_weapon = weapons[2]
-		get_parent().emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
+		emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
 		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 	if Input.is_action_just_pressed("wp4"):
 		equipped_weapon = weapons[3] 
-		get_parent().emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
+		emit_signal("set_selected_weapon", equipped_weapon.weapon_number)
 		equipped_weapon.enableWeapon()
 		equipped_weapon.checkAmmo()
 

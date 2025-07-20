@@ -10,4 +10,9 @@ var pistol_reload_time = 1
 var weapon_number = 1
 
 func _init():
-	super(pistol_name, pistol_bullet_speed, pistol_bullet_damage, pistol_fire_speed, pistol_reload_time, pistol_ammo, pistol_bullet_pattern)
+	super(
+		pistol_name, 
+		pistol_bullet_speed, 
+		pistol_bullet_damage,
+		pistol_fire_speed, 
+		pistol_reload_time, pistol_ammo, pistol_bullet_pattern)

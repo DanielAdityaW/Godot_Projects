@@ -18,6 +18,7 @@ func _on_area_entered(area):
 	if area.name == "Player":
 		Game.add_xp(xp_drop)
 		queue_free()
+		
 	if area.name == "ItemArea":
 		direction_to_player(area)
 

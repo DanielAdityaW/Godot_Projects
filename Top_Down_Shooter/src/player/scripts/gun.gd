@@ -5,7 +5,7 @@ extends Node2D
 var ammo_gun = 8
 var ammo_left = 0
 var ammo
-var isROF = false
+var isROF = false #rate of fire
 var isReload = false
 var bulletSpeed = 350
 var bulletDamage = 0.8
@@ -30,9 +30,15 @@ func _init(_gunName: String, _bulletSpeed: float, _bulletDamage:float, _fireSpee
 	reloadTime = _reloadTime
 	ammo_gun = _ammo
 
+var signals_connected = false
+
 func _ready():
-	firespeed.timeout.connect(_on_fire_speed_timeout)
-	reloadtime.timeout.connect(_on_reload_timer_timeout)
+	if not signals_connected:
+		if not firespeed.timeout.is_connected(_on_fire_speed_timeout):
+			firespeed.timeout.connect(_on_fire_speed_timeout)
+		if not reloadtime.timeout.is_connected(_on_reload_timer_timeout):
+			reloadtime.timeout.connect(_on_reload_timer_timeout)
+		signals_connected = true
 
 func isGunReady():
 	ammo_left = ammo_gun

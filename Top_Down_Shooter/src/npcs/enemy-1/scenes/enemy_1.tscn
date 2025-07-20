@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://dm2fs4jumu4wo"]
 
-[ext_resource type="Script" path="res://src/npcs/enemy-1/scripts/enemy_1.gd" id="1_ap02i"]
+[ext_resource type="Script" uid="uid://cd5kdncmeqlo3" path="res://src/npcs/enemy-1/scripts/enemy_1.gd" id="1_ap02i"]
 [ext_resource type="Texture2D" uid="uid://b54yrremawu80" path="res://assets/spritesheet/characters/idle_1_enemy-Sheet.png" id="1_bq7d7"]
 [ext_resource type="Shader" uid="uid://bjy7hj8whcosv" path="res://src/vfxs/hit-flash/resources/hit_flash.tres" id="2_k05s3"]
 [ext_resource type="Texture2D" uid="uid://cnpq1yxvispoa" path="res://assets/spritesheet/characters/enemy_1_death-Sheet.png" id="3_747qh"]
@@ -210,8 +210,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ihlte"]
 _data = {
-"RESET": SubResource("Animation_xm07p"),
-"hit_anim_flash": SubResource("Animation_3obxr")
+&"RESET": SubResource("Animation_xm07p"),
+&"hit_anim_flash": SubResource("Animation_3obxr")
 }
 
 [node name="enemy_1" type="CharacterBody2D"]
@@ -235,7 +235,7 @@ shape = SubResource("RectangleShape2D_063rf")
 
 [node name="hit_anim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ihlte")
+&"": SubResource("AnimationLibrary_ihlte")
 }
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

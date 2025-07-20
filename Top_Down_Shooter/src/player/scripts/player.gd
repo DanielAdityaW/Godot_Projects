@@ -6,15 +6,17 @@ var isAlive = true
 var playerHealth = 3
 var score = 0
 var xp = 0
-
-signal set_selected_weapon(weapon_number)
+var xp_treshold = 100
+var last_milestone = 0
 
 func _ready():
 	get_node("AnimatedSprite2D").play("idle")
+	get_node("Gunpoint").connect("set_selected_weapon", Callable(self, "_on_set_selected_weapon"))
 
 func _physics_process(delta):
 	if isAlive == true:
 		alive(delta)
+		check_xp_milestone()
 	if isAlive == false:
 		print('game over')
 
@@ -40,6 +42,15 @@ func alive(delta):
 		get_node("AnimatedSprite2D").play("run")
 
 	position += vel * delta
+	
+func check_xp_milestone():
+	xp = Game.get_xp()
+	var milestone = int(xp/xp_treshold)
+	if milestone > last_milestone:
+		var gained = milestone - last_milestone
+		playerHealth += gained
+		print("MENDAPATKAN NYAWA 1")
+		last_milestone = milestone
 
 func _on_area_entered(area):
 	if area.name == "BulletDetecion":
@@ -58,3 +69,6 @@ func add_xp(value):
 
 func _on_reload_timer_timeout():
 	pass # Replace with function body.
+	
+func _on_set_selected_weapon(weapon_number):
+	print("Senjata diganti ke:", weapon_number)

@@ -16,4 +16,3 @@ func _on_timer_timeout():
 		
 		enemySpawn.global_position = $"../player/Player/Path2D/PathFollow2D/Marker2D".global_position
 		add_child(enemySpawn)
-
